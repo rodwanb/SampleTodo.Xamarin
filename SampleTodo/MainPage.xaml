@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="SampleTodo.MainPage">
+    <StackLayout
+        Padding="0, 45, 0, 30"
+        Spacing="10">
+        <!-- Place new controls here -->
+        <!--        <Label
+            Text="Welcome to Xamarin.Forms!"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand" />
+-->
+        <Button
+            HorizontalOptions="FillAndExpand"
+            Text="Add"
+            TextColor="Black"
+            BackgroundColor="Lime"
+            Clicked="OnAddicked" />
+        <ListView
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            ItemsSource="{Binding Todos}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label
+                            Text="{Binding Title}"
+                            VerticalTextAlignment="Center"
+                            FontSize="Small" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

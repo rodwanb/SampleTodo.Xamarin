@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="SampleTodo.MainPage">
+    <StackLayout
+        Padding="0, 45, 0, 30"
+        Spacing="10">
+        <Entry
+            Text="{Binding NewTodoTitle}"
+            TextColor="Black"
+            HorizontalOptions="FillAndExpand"
+            BackgroundColor="Yellow"
+            HeightRequest="50"
+            Margin="10, 0, 10, 0" />
+        <Button
+            HorizontalOptions="FillAndExpand"
+            Text="Add"
+            TextColor="Black"
+            BackgroundColor="Lime"
+            Command="{Binding AddCommand}"
+            Margin="10, 0, 10, 0" />
+        <ListView
+            x:Name="ListView"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            ItemSelected="OnItemSelected"
+            ItemsSource="{Binding Todos}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem
+                                Clicked="OnDeleteClicked"
+                                CommandParameter="{Binding .}"
+                                Text="Delete"
+                                IsDestructive="True" />
+                        </ViewCell.ContextActions>
+                        <Label
+                            Text="{Binding Title}"
+                            VerticalTextAlignment="Center"
+                            Margin="20, 0, 20, 0"
+                            FontSize="Medium" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
