@@ -41,6 +41,7 @@ namespace SampleTodo.ViewModels
             DeleteCommand = new Command(OnDeleteCommand);
 
             App.Store.State
+                .DistinctUntilChanged(x => new { x.TodoState.SelectedTodo })
                 .ObserveOn(SynchronizationContext.Current)
                 .Select(x => x.TodoState.SelectedTodo)
                 .Where(x => x != null)

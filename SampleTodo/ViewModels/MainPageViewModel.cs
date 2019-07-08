@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using SampleTodo.Models;
 using System.Reactive.Linq;
-using System.Reactive.Concurrency;
-using System.Windows.Input;
-using Xamarin.Forms;
-using SampleTodo.Actions;
 using System.Threading;
+using System.Windows.Input;
+using SampleTodo.Actions;
 using SampleTodo.Extensions;
+using SampleTodo.Models;
+using Xamarin.Forms;
+
 namespace SampleTodo.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
@@ -36,6 +36,7 @@ namespace SampleTodo.ViewModels
             DeleteCommand = new Command(OnDeleteCommand);
 
             App.Store.State
+                .DistinctUntilChanged(x => new { x.TodoState.Todos })
                 .Select(x => x.TodoState) // only interested in todoState
                 .Where(x => x != null) // null check
                 .ObserveOn(SynchronizationContext.Current) // main thread
